@@ -1,1 +1,104 @@
-Tanishk
+```markdown
+# ExperimentIQ - Data Quality Module (Member 1)
+
+## What I Do
+I find EVERYTHING wrong with experiment data and give Member 2 a JSON report to clean it.
+
+## What's Done ✅
+
+| Feature | Status |
+|---------|--------|
+| CSV/Excel upload | ✅ |
+| Column profiling (types, stats, distributions) | ✅ |
+| Missing values detection | ✅ |
+| Duplicate rows | ✅ |
+| Duplicate users across groups (CRITICAL) | ✅ |
+| Invalid values (configurable rules) | ✅ |
+| Outliers (IQR + Z-score fallback) | ✅ |
+| Mixed date formats | ✅ |
+| Case inconsistency | ✅ |
+| Whitespace issues | ✅ |
+| Mixed types | ✅ |
+| Empty columns | ✅ |
+| Quality score (0-1) | ✅ |
+| JSON report | ✅ |
+| Unit tests (14 tests passing) | ✅ |
+
+## Files
+```
+quality_profiler.py      # Main module
+test_quality_profiler.py # Unit tests  
+datagen.py              # Sample dataset generator
+quality_report.json     # Output for Member 2
+```
+
+## Quick Start
+```python
+from quality_profiler import DataQualityProfiler
+
+profiler = DataQualityProfiler()
+df = profiler.load_data('experiment.csv')
+report = profiler.profile_data()
+profiler.save_report(report, 'quality_report.json')
+```
+
+## Report Structure (What Member 2 Gets)
+```json
+{
+  "file_info": {"rows": 10000, "columns": 10},
+  "column_profiles": {...},
+  "issues": [
+    {
+      "column": "conversion",
+      "type": "missing_values",
+      "severity": "high",
+      "count": 850,
+      "suggestion": "Impute or drop rows"
+    }
+  ],
+  "summary": {"total_issues": 12, "critical": 2, "high": 3},
+  "quality_score": 0.72
+}
+```
+
+## Severity Levels
+- 🔴 **CRITICAL**: Experiment invalid. STOP.
+- 🟡 **HIGH**: Must fix
+- 🟠 **MEDIUM**: Should investigate
+- 🟢 **LOW**: Minor cleanup
+
+## What Member 2 Should Do With My Report
+
+| Issue Type | Action |
+|------------|--------|
+| `missing_values` | Impute (mean/median/mode) or drop |
+| `duplicate_rows` | Drop duplicates |
+| `duplicate_users_across_groups` | **CRITICAL**: Fix design or stop |
+| `invalid_values` | Replace with valid values |
+| `outliers` | Cap/winsorize or investigate |
+| `inconsistent_date_formats` | Standardize format |
+| `case_inconsistency` | Convert to lowercase |
+| `whitespace_issues` | Strip whitespace |
+| `mixed_types` | Extract numeric values |
+| `empty_column` | Drop column |
+
+## Run Tests
+```bash
+python -m unittest test_quality_profiler.py
+```
+
+## Generate Sample Dataset
+```bash
+python datagen.py
+```
+
+## Interface with Member 2
+1. Clone my repo
+2. Run `quality_profiler.py` on any dataset
+3. Read `quality_report.json`
+4. Build cleaning logic based on issues found
+5. Pass cleaned data to Member 3
+
+---
+
+**Status**: ✅ COMPLETE - Ready for integration
