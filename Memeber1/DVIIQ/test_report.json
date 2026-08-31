@@ -1,0 +1,380 @@
+{
+  "file_info": {
+    "rows": 11,
+    "columns": 10,
+    "column_names": [
+      "user_id",
+      "experiment_group",
+      "conversion",
+      "revenue",
+      "date",
+      "device",
+      "country",
+      "age",
+      "session_duration",
+      "empty_column"
+    ],
+    "memory_usage_mb": 0.0
+  },
+  "column_profiles": {
+    "user_id": {
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 9,
+      "unique_pct": 81.82,
+      "sample_values": [
+        "user_001",
+        "user_002",
+        "user_003",
+        "user_004",
+        "user_005"
+      ]
+    },
+    "experiment_group": {
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 4,
+      "unique_pct": 36.36,
+      "sample_values": [
+        "control",
+        "treatment",
+        "Control",
+        "test",
+        "treatment"
+      ]
+    },
+    "conversion": {
+      "dtype": "float64",
+      "null_count": 2,
+      "null_pct": 18.18,
+      "unique_count": 3,
+      "unique_pct": 27.27,
+      "sample_values": [
+        1.0,
+        0.0,
+        1.0,
+        2.0,
+        0.0
+      ],
+      "min": 0.0,
+      "max": 2.0,
+      "mean": 0.7777777777777778,
+      "median": 1.0,
+      "std": 0.6666666666666667,
+      "q1": 0.0,
+      "q3": 1.0
+    },
+    "revenue": {
+      "dtype": "float64",
+      "null_count": 2,
+      "null_pct": 18.18,
+      "unique_count": 8,
+      "unique_pct": 72.73,
+      "sample_values": [
+        100.5,
+        200.75,
+        150.25,
+        50000.0,
+        75.0
+      ],
+      "min": -50.0,
+      "max": 50000.0,
+      "mean": 5667.444444444444,
+      "median": 150.25,
+      "std": 16624.931437254192,
+      "q1": 100.5,
+      "q3": 200.75
+    },
+    "date": {
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 10,
+      "unique_pct": 90.91,
+      "sample_values": [
+        "2024-01-01",
+        "01/15/2024",
+        "2024-02-01",
+        "02/15/2024",
+        "03-01-2024"
+      ]
+    },
+    "device": {
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 7,
+      "unique_pct": 63.64,
+      "sample_values": [
+        "mobile",
+        "desktop",
+        "Mobile",
+        "iPhone",
+        "tablet"
+      ]
+    },
+    "country": {
+      "dtype": "str",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 7,
+      "unique_pct": 63.64,
+      "sample_values": [
+        "US",
+        "USA",
+        "United States",
+        "UK",
+        "United Kingdom"
+      ]
+    },
+    "age": {
+      "dtype": "float64",
+      "null_count": 2,
+      "null_pct": 18.18,
+      "unique_count": 8,
+      "unique_pct": 72.73,
+      "sample_values": [
+        25.0,
+        30.0,
+        120.0,
+        45.0,
+        8.0
+      ],
+      "min": 8.0,
+      "max": 120.0,
+      "mean": 44.77777777777778,
+      "median": 35.0,
+      "std": 32.48760447377499,
+      "q1": 25.0,
+      "q3": 55.0
+    },
+    "session_duration": {
+      "dtype": "int64",
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_count": 9,
+      "unique_pct": 81.82,
+      "sample_values": [
+        100,
+        200,
+        0,
+        150,
+        300
+      ],
+      "min": -50.0,
+      "max": 500.0,
+      "mean": 172.72727272727272,
+      "median": 150.0,
+      "std": 167.8744119329035,
+      "q1": 50.0,
+      "q3": 275.0
+    },
+    "empty_column": {
+      "dtype": "float64",
+      "null_count": 11,
+      "null_pct": 100.0,
+      "unique_count": 0,
+      "unique_pct": 0.0,
+      "sample_values": [],
+      "min": null,
+      "max": null,
+      "mean": null,
+      "median": null,
+      "std": null,
+      "q1": null,
+      "q3": null
+    }
+  },
+  "issues": [
+    {
+      "column": "conversion",
+      "type": "missing_values",
+      "severity": "high",
+      "count": 2,
+      "pct": 18.18,
+      "description": "2 missing values (18.2%)",
+      "suggestion": "Impute with median/mode or drop rows if >10%"
+    },
+    {
+      "column": "revenue",
+      "type": "missing_values",
+      "severity": "high",
+      "count": 2,
+      "pct": 18.18,
+      "description": "2 missing values (18.2%)",
+      "suggestion": "Impute with median/mode or drop rows if >10%"
+    },
+    {
+      "column": "age",
+      "type": "missing_values",
+      "severity": "high",
+      "count": 2,
+      "pct": 18.18,
+      "description": "2 missing values (18.2%)",
+      "suggestion": "Impute with median/mode or drop rows if >10%"
+    },
+    {
+      "column": "empty_column",
+      "type": "missing_values",
+      "severity": "high",
+      "count": 11,
+      "pct": 100.0,
+      "description": "11 missing values (100.0%)",
+      "suggestion": "Impute with median/mode or drop rows if >10%"
+    },
+    {
+      "type": "duplicate_rows",
+      "severity": "high",
+      "count": 1,
+      "pct": 9.09,
+      "description": "1 exact duplicate rows (9.1%)",
+      "suggestion": "Drop duplicate rows"
+    },
+    {
+      "type": "duplicate_users_across_groups",
+      "severity": "critical",
+      "count": 1,
+      "sample_users": [
+        "user_001"
+      ],
+      "description": "1 users appear in multiple experiment groups",
+      "suggestion": "CRITICAL: Experiment design invalid. Users must be in ONLY one group."
+    },
+    {
+      "column": "experiment_group",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        "test"
+      ],
+      "count": 1,
+      "description": "Found 1 invalid values in column 'experiment_group'",
+      "suggestion": "Replace invalid values with valid options: ['control', 'treatment']"
+    },
+    {
+      "column": "conversion",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        2.0
+      ],
+      "count": 1,
+      "description": "Found 1 invalid values in column 'conversion'",
+      "suggestion": "Replace invalid values with valid options: [0, 1]"
+    },
+    {
+      "column": "revenue",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        -50.0
+      ],
+      "count": 1,
+      "description": "Found 1 invalid values in column 'revenue'",
+      "suggestion": "Replace invalid values with valid options: []"
+    },
+    {
+      "column": "device",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        "iPhone",
+        "Android"
+      ],
+      "count": 2,
+      "description": "Found 2 invalid values in column 'device'",
+      "suggestion": "Replace invalid values with valid options: ['mobile', 'desktop', 'tablet']"
+    },
+    {
+      "column": "country",
+      "type": "invalid_values",
+      "severity": "high",
+      "invalid_values": [
+        "USA",
+        "United States",
+        "IN",
+        "United Kingdom"
+      ],
+      "count": 4,
+      "description": "Found 4 invalid values in column 'country'",
+      "suggestion": "Replace invalid values with valid options: ['US', 'UK', 'India']"
+    },
+    {
+      "column": "age",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        8.0,
+        120.0
+      ],
+      "count": 2,
+      "description": "Found 2 invalid values in column 'age'",
+      "suggestion": "Replace invalid values with valid options: []"
+    },
+    {
+      "column": "session_duration",
+      "type": "invalid_values",
+      "severity": "medium",
+      "invalid_values": [
+        0,
+        -50
+      ],
+      "count": 2,
+      "description": "Found 2 invalid values in column 'session_duration'",
+      "suggestion": "Replace invalid values with valid options: []"
+    },
+    {
+      "column": "date",
+      "type": "inconsistent_date_formats",
+      "severity": "high",
+      "formats_found": [
+        "%Y-%m-%d",
+        "%m/%d/%Y",
+        "%d-%m-%Y"
+      ],
+      "description": "Multiple date formats detected: %Y-%m-%d, %m/%d/%Y, %d-%m-%Y",
+      "suggestion": "Standardize to a single date format (e.g., %Y-%m-%d)"
+    },
+    {
+      "column": "experiment_group",
+      "type": "case_inconsistency",
+      "severity": "low",
+      "description": "Column 'experiment_group' has inconsistent casing",
+      "suggestion": "Standardize to lowercase or title case"
+    },
+    {
+      "column": "device",
+      "type": "case_inconsistency",
+      "severity": "low",
+      "description": "Column 'device' has inconsistent casing",
+      "suggestion": "Standardize to lowercase or title case"
+    },
+    {
+      "column": "empty_column",
+      "type": "empty_column",
+      "severity": "low",
+      "description": "Column 'empty_column' is completely empty",
+      "suggestion": "Drop this column"
+    }
+  ],
+  "summary": {
+    "total_issues": 17,
+    "critical": 1,
+    "high": 7,
+    "medium": 6,
+    "low": 3,
+    "by_type": {
+      "missing_values": 4,
+      "duplicate_rows": 1,
+      "duplicate_users_across_groups": 1,
+      "invalid_values": 7,
+      "inconsistent_date_formats": 1,
+      "case_inconsistency": 2,
+      "empty_column": 1
+    }
+  },
+  "quality_score": 0,
+  "report_timestamp": "2026-08-31T21:26:53.429418"
+}
