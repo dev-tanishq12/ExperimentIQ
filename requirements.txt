@@ -1,0 +1,21 @@
+# ============================================================
+# EXPERIMENTIQ - Complete Project Requirements
+# ============================================================
+
+# Core Data Processing
+pandas>=1.5.0
+numpy>=1.23.0
+
+# File Handling
+openpyxl>=3.0.0
+
+# Statistical Analysis (Member 1 & 3)
+scipy>=1.9.0
+statsmodels>=0.13.0
+
+# Visualization (Member 4 - Dashboard)
+streamlit>=1.20.0
+plotly>=5.10.0
+
+# Optional Utilities
+python-dotenv>=1.0.0
