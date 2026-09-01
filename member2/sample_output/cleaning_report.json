@@ -1,0 +1,479 @@
+{
+  "timestamp": "2026-09-01T10:58:51.338239",
+  "source_quality_report": "2026-08-31T21:23:59.536303",
+  "actions_summary": {
+    "total_actions": 18,
+    "applied": 17,
+    "skipped": 1,
+    "pending": 0
+  },
+  "cleaning_actions": [
+    {
+      "issue_type": "missing_values",
+      "column": "conversion",
+      "severity": "high",
+      "action": "impute",
+      "confidence": 0.85,
+      "explanation": "Column 'conversion' has 1013 missing values (10.03%) \u2192 Impute with median",
+      "parameters": {
+        "method": "median"
+      }
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "revenue",
+      "severity": "medium",
+      "action": "impute",
+      "confidence": 0.85,
+      "explanation": "Column 'revenue' has 811 missing values (8.03%) \u2192 Impute with mode",
+      "parameters": {
+        "method": "mode"
+      }
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "age",
+      "severity": "low",
+      "action": "impute",
+      "confidence": 0.85,
+      "explanation": "Column 'age' has 502 missing values (4.97%) \u2192 Impute with median",
+      "parameters": {
+        "method": "median"
+      }
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "empty_column",
+      "severity": "high",
+      "action": "impute",
+      "confidence": 0.85,
+      "explanation": "Column 'empty_column' has 10100 missing values (100.0%) \u2192 Impute with median",
+      "parameters": {
+        "method": "median"
+      }
+    },
+    {
+      "issue_type": "duplicate_rows",
+      "column": null,
+      "severity": "medium",
+      "action": "drop_duplicates",
+      "confidence": 0.95,
+      "explanation": "Found 62 duplicate rows (0.61%) \u2192 Dropping duplicates",
+      "parameters": {
+        "keep": "first"
+      }
+    },
+    {
+      "issue_type": "duplicate_users_across_groups",
+      "column": null,
+      "severity": "critical",
+      "action": "flag_for_review",
+      "confidence": 1.0,
+      "explanation": "CRITICAL: Users in multiple groups \u2192 MANUAL REVIEW REQUIRED",
+      "parameters": {
+        "manual_review": true
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "experiment_group",
+      "severity": "high",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'experiment_group': ['TRT', ' control', ' treatment'] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          "TRT",
+          " control",
+          " treatment",
+          "treatment ",
+          " test",
+          " TRT",
+          "test",
+          " treatment ",
+          " Control"
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "conversion",
+      "severity": "medium",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'conversion': [2.0] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          2.0
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "device",
+      "severity": "high",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'device': ['iPhone ', 'tablet ', 'mobile '] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          "iPhone ",
+          "tablet ",
+          "mobile ",
+          "Android",
+          "Mobile ",
+          "desktop ",
+          "iPhone",
+          "Desktop ",
+          "Android "
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "country",
+      "severity": "high",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'country': ['IN', 'USA', 'United Kingdom'] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          "IN",
+          "USA",
+          "United Kingdom",
+          "United States"
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "age",
+      "severity": "high",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'age': [5.0, 6.0, 7.0] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          5.0,
+          6.0,
+          7.0,
+          8.0,
+          9.0,
+          10.0,
+          11.0,
+          12.0,
+          101.0,
+          102.0
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "session_duration",
+      "severity": "high",
+      "action": "replace_invalid",
+      "confidence": 0.5,
+      "explanation": "Found invalid values in 'session_duration': [0, -100, -99] \u2192 No replacement found, flagging for review",
+      "parameters": {
+        "invalid_values": [
+          0,
+          -100,
+          -99,
+          -98,
+          -97,
+          -96,
+          -95,
+          -94,
+          -93,
+          -92
+        ],
+        "replace_with": null
+      }
+    },
+    {
+      "issue_type": "outliers",
+      "column": "age",
+      "severity": "medium",
+      "action": "cap_outliers",
+      "confidence": 0.7,
+      "explanation": "Found 51 outliers in 'age' \u2192 Capping between -6.00 and 90.00",
+      "parameters": {
+        "method": "winsorize",
+        "lower_bound": -6.0,
+        "upper_bound": 90.0
+      }
+    },
+    {
+      "issue_type": "inconsistent_date_formats",
+      "column": "date",
+      "severity": "high",
+      "action": "standardize_date",
+      "confidence": 0.9,
+      "explanation": "Multiple date formats found: ['%Y-%m-%d', '%m/%d/%Y', '%d-%m-%Y'] \u2192 Standardizing",
+      "parameters": {
+        "target_format": "%Y-%m-%d",
+        "current_formats": [
+          "%Y-%m-%d",
+          "%m/%d/%Y",
+          "%d-%m-%Y"
+        ]
+      }
+    },
+    {
+      "issue_type": "case_inconsistency",
+      "column": "experiment_group",
+      "severity": "low",
+      "action": "standardize_case",
+      "confidence": 0.85,
+      "explanation": "Column 'experiment_group' has inconsistent casing \u2192 Converting to lowercase",
+      "parameters": {
+        "case": "lower"
+      }
+    },
+    {
+      "issue_type": "case_inconsistency",
+      "column": "device",
+      "severity": "low",
+      "action": "standardize_case",
+      "confidence": 0.85,
+      "explanation": "Column 'device' has inconsistent casing \u2192 Converting to lowercase",
+      "parameters": {
+        "case": "lower"
+      }
+    },
+    {
+      "issue_type": "whitespace_issues",
+      "column": "experiment_group",
+      "severity": "low",
+      "action": "strip_whitespace",
+      "confidence": 0.95,
+      "explanation": "Found 200 values with whitespace \u2192 Stripping",
+      "parameters": {
+        "strip": true
+      }
+    },
+    {
+      "issue_type": "empty_column",
+      "column": "empty_column",
+      "severity": "low",
+      "action": "drop_column",
+      "confidence": 0.95,
+      "explanation": "Column 'empty_column' is completely empty \u2192 Dropping",
+      "parameters": {
+        "drop": true
+      }
+    }
+  ],
+  "audit_log": [
+    {
+      "issue_type": "missing_values",
+      "column": "conversion",
+      "severity": "high",
+      "recommended_action": "impute",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.248501"
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "revenue",
+      "severity": "medium",
+      "recommended_action": "impute",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.252501"
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "age",
+      "severity": "low",
+      "recommended_action": "impute",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.253501"
+    },
+    {
+      "issue_type": "missing_values",
+      "column": "empty_column",
+      "severity": "high",
+      "recommended_action": "impute",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.253501"
+    },
+    {
+      "issue_type": "duplicate_rows",
+      "column": null,
+      "severity": "medium",
+      "recommended_action": "drop_duplicates",
+      "confidence": 0.95,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.265504"
+    },
+    {
+      "issue_type": "duplicate_users_across_groups",
+      "column": null,
+      "severity": "critical",
+      "recommended_action": "flag_for_review",
+      "confidence": 1.0,
+      "status": "skipped",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.265504"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "experiment_group",
+      "severity": "high",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.265504"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "conversion",
+      "severity": "medium",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.266502"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "device",
+      "severity": "high",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.266502"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "country",
+      "severity": "high",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.266502"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "age",
+      "severity": "high",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.266502"
+    },
+    {
+      "issue_type": "invalid_values",
+      "column": "session_duration",
+      "severity": "high",
+      "recommended_action": "replace_invalid",
+      "confidence": 0.5,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.266502"
+    },
+    {
+      "issue_type": "outliers",
+      "column": "age",
+      "severity": "medium",
+      "recommended_action": "cap_outliers",
+      "confidence": 0.7,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.268501"
+    },
+    {
+      "issue_type": "inconsistent_date_formats",
+      "column": "date",
+      "severity": "high",
+      "recommended_action": "standardize_date",
+      "confidence": 0.9,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.284605"
+    },
+    {
+      "issue_type": "case_inconsistency",
+      "column": "experiment_group",
+      "severity": "low",
+      "recommended_action": "standardize_case",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.285606"
+    },
+    {
+      "issue_type": "case_inconsistency",
+      "column": "device",
+      "severity": "low",
+      "recommended_action": "standardize_case",
+      "confidence": 0.85,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.287607"
+    },
+    {
+      "issue_type": "whitespace_issues",
+      "column": "experiment_group",
+      "severity": "low",
+      "recommended_action": "strip_whitespace",
+      "confidence": 0.95,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.288608"
+    },
+    {
+      "issue_type": "empty_column",
+      "column": "empty_column",
+      "severity": "low",
+      "recommended_action": "drop_column",
+      "confidence": 0.95,
+      "status": "applied",
+      "timestamp": "2026-09-01T10:58:51.246500",
+      "applied_at": "2026-09-01T10:58:51.290609"
+    }
+  ],
+  "validation": {
+    "original_shape": {
+      "rows": 10100,
+      "columns": 10
+    },
+    "cleaned_shape": {
+      "rows": 10038,
+      "columns": 9
+    },
+    "missing_values": {
+      "original": 12426,
+      "cleaned": 7032,
+      "fixed": 5394
+    },
+    "duplicates": {
+      "original": 62,
+      "cleaned": 0,
+      "removed": 62
+    },
+    "columns_dropped": [
+      "empty_column"
+    ],
+    "columns_added": []
+  },
+  "cleaning_status": "complete"
+}
