@@ -1,0 +1,52 @@
+# ExperimentIQ - Intelligent Cleaning Assistant (Member 2)
+
+## What I Do
+I consume Member 1's quality report, generate cleaning recommendations, interact with the user to approve/reject/modify each action, apply cleaning, validate changes, and produce a clean dataset for Member 3.
+
+## What's Done ✅
+
+| Feature | Status |
+|---------|--------|
+| Consume Member 1's quality report | ✅ |
+| Generate cleaning recommendations | ✅ |
+| Interactive review (human-in-the-loop) | ✅ |
+| Auto mode (no review) | ✅ |
+| Apply cleaning actions | ✅ |
+| Impute missing values | ✅ |
+| Drop duplicate rows | ✅ |
+| Replace invalid values | ✅ |
+| Cap outliers (winsorize) | ✅ |
+| Standardize date formats | ✅ |
+| Standardize case | ✅ |
+| Strip whitespace | ✅ |
+| Convert mixed types | ✅ |
+| Drop empty columns | ✅ |
+| Fix duplicate users across groups | ✅ |
+| Generate validation report | ✅ |
+| Generate cleaning report | ✅ |
+| Maintain audit log | ✅ |
+| Save cleaned dataset for Member 3 | ✅ |
+| Unit tests (7 tests passing) | ✅ |
+
+## Files
+cleaning_assistant.py # Main module
+test_cleaning.py # Unit tests
+sample_output/
+├── cleaned_data.csv # Clean dataset → Member 3
+├── cleaning_report.json # Cleaning report → Member 3
+└── audit_log.json # Audit trail
+
+
+## Quick Start
+
+### Interactive Mode (Recommended)
+```bash
+cd Member2
+python cleaning_assistant.py
+# Choose 1 for Interactive mode
+
+Auto Mode (No Review)
+bash
+cd Member2
+python cleaning_assistant.py
+# Choose 2 for Auto mode
