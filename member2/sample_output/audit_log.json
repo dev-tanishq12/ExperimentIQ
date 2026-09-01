@@ -1,0 +1,182 @@
+[
+  {
+    "issue_type": "missing_values",
+    "column": "conversion",
+    "severity": "high",
+    "recommended_action": "impute",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.248501"
+  },
+  {
+    "issue_type": "missing_values",
+    "column": "revenue",
+    "severity": "medium",
+    "recommended_action": "impute",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.252501"
+  },
+  {
+    "issue_type": "missing_values",
+    "column": "age",
+    "severity": "low",
+    "recommended_action": "impute",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.253501"
+  },
+  {
+    "issue_type": "missing_values",
+    "column": "empty_column",
+    "severity": "high",
+    "recommended_action": "impute",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.253501"
+  },
+  {
+    "issue_type": "duplicate_rows",
+    "column": null,
+    "severity": "medium",
+    "recommended_action": "drop_duplicates",
+    "confidence": 0.95,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.265504"
+  },
+  {
+    "issue_type": "duplicate_users_across_groups",
+    "column": null,
+    "severity": "critical",
+    "recommended_action": "flag_for_review",
+    "confidence": 1.0,
+    "status": "skipped",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.265504"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "experiment_group",
+    "severity": "high",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.265504"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "conversion",
+    "severity": "medium",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.266502"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "device",
+    "severity": "high",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.266502"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "country",
+    "severity": "high",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.266502"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "age",
+    "severity": "high",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.266502"
+  },
+  {
+    "issue_type": "invalid_values",
+    "column": "session_duration",
+    "severity": "high",
+    "recommended_action": "replace_invalid",
+    "confidence": 0.5,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.266502"
+  },
+  {
+    "issue_type": "outliers",
+    "column": "age",
+    "severity": "medium",
+    "recommended_action": "cap_outliers",
+    "confidence": 0.7,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.268501"
+  },
+  {
+    "issue_type": "inconsistent_date_formats",
+    "column": "date",
+    "severity": "high",
+    "recommended_action": "standardize_date",
+    "confidence": 0.9,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.284605"
+  },
+  {
+    "issue_type": "case_inconsistency",
+    "column": "experiment_group",
+    "severity": "low",
+    "recommended_action": "standardize_case",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.285606"
+  },
+  {
+    "issue_type": "case_inconsistency",
+    "column": "device",
+    "severity": "low",
+    "recommended_action": "standardize_case",
+    "confidence": 0.85,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.287607"
+  },
+  {
+    "issue_type": "whitespace_issues",
+    "column": "experiment_group",
+    "severity": "low",
+    "recommended_action": "strip_whitespace",
+    "confidence": 0.95,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.288608"
+  },
+  {
+    "issue_type": "empty_column",
+    "column": "empty_column",
+    "severity": "low",
+    "recommended_action": "drop_column",
+    "confidence": 0.95,
+    "status": "applied",
+    "timestamp": "2026-09-01T10:58:51.246500",
+    "applied_at": "2026-09-01T10:58:51.290609"
+  }
+]
