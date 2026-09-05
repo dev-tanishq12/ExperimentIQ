@@ -255,13 +255,15 @@ class DataQualityProfiler:
         
         for col in numeric_cols:
             series = self.df[col].dropna()
-            if len(series) < 10:
+            if len(series) < 10 or series.nunique() <= 2 or col.lower() in ['conversion', 'converted']:
                 continue
             
             # Try IQR first
             Q1 = series.quantile(0.25)
             Q3 = series.quantile(0.75)
             IQR = Q3 - Q1
+            if IQR == 0:
+                continue
             
             threshold = self.config.get('outlier_threshold', 1.5)
             
