@@ -1,6 +1,14 @@
 // frontend/src/components/MetricsOverview.jsx
 import React from 'react';
-import { TrendingUp, TrendingDown, DollarSign, MousePointerClick, Clock, ArrowUpRight, ArrowDownRight } from 'lucide-react';
+import {
+  MousePointerClick,
+  DollarSign,
+  Clock,
+  ArrowUpRight,
+  ArrowDownRight,
+  HelpCircle,
+  CheckCircle2
+} from 'lucide-react';
 
 export default function MetricsOverview({ metrics, statisticalAnalysis }) {
   if (!metrics) return null;
@@ -17,113 +25,134 @@ export default function MetricsOverview({ metrics, statisticalAnalysis }) {
     {
       title: 'Conversion Rate',
       icon: MousePointerClick,
-      color: '#6366f1',
+      color: '#38bdf8',
       metric: conv,
       stats: convStats,
       formatter: (v) => `${(v * 100).toFixed(2)}%`,
-      absFormatter: (v) => `${(v * 100).toFixed(2)} pp`
+      absDiff: conv ? (conv.absolute_lift * 100).toFixed(2) + ' pp' : '',
+      humanSummary: conv ? (
+        conv.relative_lift_pct > 0
+          ? `Treatment generated +${(conv.absolute_lift * 100).toFixed(1)} additional conversions per 100 visitors.`
+          : `Treatment lost ${Math.abs(conv.absolute_lift * 100).toFixed(1)} conversions per 100 visitors.`
+      ) : ''
     },
     {
       title: 'Revenue Per User',
       icon: DollarSign,
-      color: '#10b981',
+      color: '#34d399',
       metric: rev,
       stats: revStats,
       formatter: (v) => `$${Number(v).toFixed(2)}`,
-      absFormatter: (v) => `$${Number(v).toFixed(2)}`
+      absDiff: rev ? (rev.absolute_lift > 0 ? '+$' : '-$') + Math.abs(rev.absolute_lift).toFixed(2) : '',
+      humanSummary: rev ? (
+        rev.relative_lift_pct > 0
+          ? `Users spent an average of $${rev.absolute_lift.toFixed(2)} more with this variant.`
+          : `Average spend per user decreased by $${Math.abs(rev.absolute_lift).toFixed(2)}.`
+      ) : ''
     },
     {
       title: 'Session Duration',
       icon: Clock,
-      color: '#f59e0b',
+      color: '#fbbf24',
       metric: dur,
       stats: durStats,
       formatter: (v) => `${Number(v).toFixed(1)}s`,
-      absFormatter: (v) => `${Number(v).toFixed(1)}s`
+      absDiff: dur ? (dur.absolute_lift > 0 ? '+' : '') + Number(dur.absolute_lift).toFixed(1) + 's' : '',
+      humanSummary: dur ? (
+        dur.absolute_lift > 0
+          ? `Users spent ${Math.abs(dur.absolute_lift).toFixed(1)} seconds longer engaging with the variant.`
+          : `Session length dropped by ${Math.abs(dur.absolute_lift).toFixed(1)} seconds.`
+      ) : ''
     }
   ].filter(c => c.metric != null);
 
   return (
     <div className="mb-8">
-      <div className="flex items-center gap-2 mb-4">
-        <TrendingUp className="text-indigo-400" size={20} />
-        <h2 className="text-sm font-bold tracking-wide uppercase text-gray-300">
-          Member 3 • Metric Engine & Statistical Significance
-        </h2>
+      <div className="flex items-center justify-between mb-3">
+        <div>
+          <h2 className="text-base font-bold text-white tracking-tight">
+            Key Metric Performance
+          </h2>
+          <p className="text-xs text-gray-400">
+            Control vs. treatment comparison across business metrics
+          </p>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {cards.map((c, i) => {
           const Icon = c.icon;
           const isPos = (c.metric.relative_lift_pct || 0) >= 0;
           const isSig = c.stats.is_significant;
 
           return (
-            <div key={i} className="glass-card p-6 relative overflow-hidden">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2.5">
-                  <div 
-                    className="p-2.5 rounded-xl border"
-                    style={{ 
-                      backgroundColor: `${c.color}20`, 
-                      borderColor: `${c.color}40`,
-                      color: c.color 
-                    }}
-                  >
-                    <Icon size={18} />
+            <div key={i} className="human-card p-5 relative overflow-hidden flex flex-col justify-between">
+              <div>
+                {/* Header */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <div
+                      className="w-8 h-8 rounded-lg flex items-center justify-center"
+                      style={{ backgroundColor: `${c.color}15`, color: c.color }}
+                    >
+                      <Icon size={16} />
+                    </div>
+                    <span className="text-sm font-bold text-white">{c.title}</span>
                   </div>
-                  <span className="text-base font-bold text-white">{c.title}</span>
+
+                  {isSig ? (
+                    <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full flex items-center gap-1">
+                      <CheckCircle2 size={11} />
+                      Significant
+                    </span>
+                  ) : (
+                    <span className="text-[11px] font-medium text-gray-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded-full">
+                      Not Significant
+                    </span>
+                  )}
                 </div>
 
-                {isSig ? (
-                  <span className="badge badge-success text-xs">
-                    p &lt; 0.05 (Sig)
-                  </span>
-                ) : (
-                  <span className="badge badge-info text-xs">
-                    p = {c.stats.p_value != null ? Number(c.stats.p_value).toFixed(3) : 'N/A'} (Not Sig)
-                  </span>
-                )}
+                {/* Big Lift Number */}
+                <div className="my-3">
+                  <div className="flex items-baseline gap-2">
+                    <div className={`text-3xl font-extrabold font-mono flex items-center ${isPos ? 'text-emerald-400' : 'text-rose-400'}`}>
+                      {isPos ? <ArrowUpRight size={24} /> : <ArrowDownRight size={24} />}
+                      {c.metric.relative_lift_pct > 0 ? '+' : ''}{c.metric.relative_lift_pct}%
+                    </div>
+                    <span className="text-xs text-gray-400 font-mono">
+                      ({c.absDiff})
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-gray-300 mt-1 leading-snug">
+                    {c.humanSummary}
+                  </p>
+                </div>
+
+                {/* Control vs Treatment Comparison Pills */}
+                <div className="grid grid-cols-2 gap-2 mt-4 pt-3 border-t border-white/5 text-xs">
+                  <div className="bg-black/20 p-2.5 rounded-lg">
+                    <div className="text-[10px] text-gray-400 uppercase font-semibold">Control</div>
+                    <div className="text-sm font-bold font-mono text-gray-200 mt-0.5">
+                      {c.formatter(c.metric.control)}
+                    </div>
+                  </div>
+                  <div className="bg-black/20 p-2.5 rounded-lg">
+                    <div className="text-[10px] text-gray-400 uppercase font-semibold">Treatment</div>
+                    <div className="text-sm font-bold font-mono text-white mt-0.5">
+                      {c.formatter(c.metric.treatment)}
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              {/* Lift Badge Highlight */}
-              <div className="flex items-baseline justify-between my-4 bg-white/5 p-3 rounded-xl border border-white/5">
-                <div>
-                  <div className="text-xs text-gray-400 font-medium">Relative Lift</div>
-                  <div className={`text-2xl font-black mt-0.5 flex items-center gap-1 ${isPos ? 'text-emerald-400' : 'text-rose-400'}`}>
-                    {isPos ? <ArrowUpRight size={22} /> : <ArrowDownRight size={22} />}
-                    {c.metric.relative_lift_pct > 0 ? '+' : ''}{c.metric.relative_lift_pct}%
-                  </div>
-                </div>
-
-                <div className="text-right">
-                  <div className="text-xs text-gray-400 font-medium">Absolute Δ</div>
-                  <div className="text-sm font-semibold font-mono text-gray-300 mt-1">
-                    {c.absFormatter(c.metric.absolute_lift)}
-                  </div>
-                </div>
-              </div>
-
-              {/* Control vs Treatment Comparison */}
-              <div className="grid grid-cols-2 gap-3 pt-2 border-t border-white/10 text-xs sm:text-sm">
-                <div>
-                  <div className="text-gray-400 font-medium">Control</div>
-                  <div className="text-base font-bold font-mono text-gray-200 mt-0.5">
-                    {c.formatter(c.metric.control)}
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="text-gray-400 font-medium">Treatment</div>
-                  <div className="text-base font-bold font-mono text-white mt-0.5">
-                    {c.formatter(c.metric.treatment)}
-                  </div>
-                </div>
-              </div>
-
-              {/* 95% Confidence Interval if available */}
+              {/* Confidence Interval footer */}
               {c.stats.confidence_interval && (
-                <div className="mt-3 text-xs text-gray-400 bg-black/20 p-2 rounded-lg font-mono">
-                  95% CI: [{c.stats.confidence_interval.lower}, {c.stats.confidence_interval.upper}]
+                <div className="mt-3 text-[11px] text-gray-400 flex items-center justify-between">
+                  <span>95% Confidence Interval:</span>
+                  <span className="font-mono text-gray-300">
+                    [{c.stats.confidence_interval.lower}, {c.stats.confidence_interval.upper}]
+                  </span>
                 </div>
               )}
             </div>

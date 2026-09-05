@@ -107,44 +107,50 @@ export default function App() {
   return (
     <div className="min-h-screen text-gray-100 flex flex-col">
       {/* Top Navbar */}
-      <header className="border-b border-white/10 bg-black/40 backdrop-blur-xl sticky top-0 z-40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <header className="border-b border-slate-200/80 bg-white/80 backdrop-blur-sm sticky top-0 z-40">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 flex items-center justify-center shadow-lg shadow-indigo-500/25">
-              <Rocket size={20} className="text-white" />
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-500 via-indigo-500 to-orange-400 flex items-center justify-center shadow-sm">
+              <Rocket size={18} className="text-white" />
             </div>
             <div>
-              <div className="flex items-center gap-2">
-                <span className="font-extrabold text-lg text-white tracking-tight">ExperimentIQ</span>
-                <span className="badge badge-info text-[10px] py-0.5 px-2">v2.0 Full Integration</span>
-              </div>
-              <div className="text-[11px] text-gray-400 hidden sm:block">
-                Automated Experimentation, Quality Profiling & Explainable Decision Engine
+              <div className="font-extrabold text-lg text-slate-900 tracking-tight">ExperimentIQ</div>
+              <div className="text-[11px] text-slate-500 hidden sm:block">
+                calmer decisions for smarter product teams
               </div>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="hidden md:flex items-center gap-1.5 text-xs text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-full">
-              <Activity size={12} className="animate-pulse" />
-              <span>Pipeline Ready</span>
-            </div>
-
             <button
               onClick={downloadJsonReport}
               disabled={!data || loading}
-              className="btn-secondary text-xs py-1.5 px-3 rounded-lg"
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-sm disabled:opacity-50"
               title="Export complete execution report as JSON"
             >
               <Download size={14} />
-              <span className="hidden sm:inline">Export Report</span>
+              <span className="hidden sm:inline">Export</span>
             </button>
           </div>
         </div>
       </header>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="mb-6 rounded-2xl border border-slate-200 bg-white/70 p-5 shadow-sm">
+          <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.18em] font-bold text-violet-600">Experiment health</p>
+              <h1 className="mt-1 text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                Clear decisions, without the noise.
+              </h1>
+            </div>
+            <div className="rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-700">
+              Live analysis ready
+            </div>
+          </div>
+        </div>
+
         {/* Scenario Quick Switcher */}
         <ScenarioSelector
           currentScenario={currentScenario}
@@ -177,7 +183,7 @@ export default function App() {
 
         {/* Rendered Pipeline Results */}
         {!loading && data && (
-          <div>
+          <div className="space-y-6">
             {/* 1. HERO RECOMMENDATION BANNER (Most Important Final Screen) */}
             <HeroDecisionBanner
               decision={data.decision}
@@ -186,20 +192,18 @@ export default function App() {
             />
 
             {/* Navigation Filter Tabs */}
-            <div className="flex border-b border-white/10 mb-6 gap-2 sm:gap-4 overflow-x-auto text-xs sm:text-sm font-semibold">
+            <div className="mb-6 flex flex-wrap items-center gap-2 overflow-x-auto pb-1">
               {[
-                { id: 'all', label: 'All Modules' },
-                { id: 'metrics', label: 'Metrics & Statistics' },
-                { id: 'segments', label: 'Segment Analysis' },
-                { id: 'quality', label: 'Data Quality & Cleaning' }
+                { id: 'all', label: 'Overview' },
+                { id: 'metrics', label: 'Metrics' },
+                { id: 'segments', label: 'Segments' },
+                { id: 'quality', label: 'Quality' }
               ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`pb-3 px-2 border-b-2 transition-all whitespace-nowrap ${
-                    activeTab === tab.id
-                      ? 'border-indigo-500 text-indigo-400'
-                      : 'border-transparent text-gray-400 hover:text-gray-200'
+                  className={`tab-pill whitespace-nowrap ${
+                    activeTab === tab.id ? 'active' : ''
                   }`}
                 >
                   {tab.label}
@@ -250,9 +254,9 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-white/10 py-6 bg-black/30 text-center text-xs text-gray-500">
-        <div className="max-w-7xl mx-auto px-4">
-          ExperimentIQ • Fully Integrated Group Architecture (Member 1: Quality Profiling, Member 2: Cleaning Assistant, Member 3: Experiment Analyzer, Member 4: Segment Engine, Decision Engine, React App)
+      <footer className="border-t border-slate-200 bg-white/70 py-6 text-center text-xs text-slate-500">
+        <div className="max-w-6xl mx-auto px-4">
+          ExperimentIQ • built to help teams make calmer, clearer experiment decisions.
         </div>
       </footer>
     </div>
