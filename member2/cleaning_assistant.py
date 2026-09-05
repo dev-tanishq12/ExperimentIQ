@@ -345,6 +345,13 @@ class CleaningAssistant:
         
         return self.cleaned_df
     
+    def apply_cleaning(self) -> pd.DataFrame:
+        """Apply all generated recommendations automatically."""
+        for action in self.cleaning_actions:
+            self._apply_single_action(action)
+            self._update_audit(action, 'auto_applied')
+        return self.cleaned_df
+
     def _apply_single_action(self, action: Dict):
         """Apply a single cleaning action."""
         action_type = action.get('action')
@@ -425,8 +432,13 @@ class CleaningAssistant:
     
     def _cap_outliers(self, column: str, params: Dict):
         """Cap outliers using winsorization."""
+        if column.lower() in ['conversion', 'converted'] or self.cleaned_df[column].nunique() <= 2:
+            return
         lower = params.get('lower_bound')
         upper = params.get('upper_bound')
+        
+        if lower is not None and upper is not None and lower >= upper:
+            return
         
         if lower is not None:
             self.cleaned_df[column] = self.cleaned_df[column].clip(lower=lower)

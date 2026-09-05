@@ -13,7 +13,9 @@ openpyxl>=3.0.0
 scipy>=1.9.0
 statsmodels>=0.13.0
 
-# Visualization (Member 4 - Dashboard)
+# Visualization & Web Application (Member 4 - Dashboard)
+flask>=3.0.0
+flask-cors>=4.0.0
 streamlit>=1.20.0
 plotly>=5.10.0
 

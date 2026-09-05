@@ -158,7 +158,7 @@ class TestCleaningAssistant(unittest.TestCase):
     def test_full_pipeline(self):
         """Test the complete pipeline."""
         assistant = CleaningAssistant('test_output/quality_report.json')
-        cleaned_df = assistant.run_pipeline('test_output/test_data.csv', 'test_output/')
+        cleaned_df = assistant.run_pipeline('test_output/test_data.csv', 'test_output/', interactive=False)
         
         # Check we have a cleaned DataFrame
         self.assertIsNotNone(cleaned_df)

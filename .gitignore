@@ -2,3 +2,5 @@
 __pycache__/
 *.pyc
 .DS_Store
+powershell.cmd
+frontend/node_modules/
