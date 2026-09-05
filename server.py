@@ -12,10 +12,6 @@ import sys
 import io
 import json
 from pathlib import Path
-from flask import Flask, request, jsonify, send_from_directory
-from flask_cors import CORS
-import pandas as pd
-import numpy as np
 
 # Add project root and member paths
 BASE_DIR = Path(__file__).resolve().parent
@@ -24,6 +20,18 @@ sys.path.insert(0, str(BASE_DIR / 'Member1' / 'DVIIQ'))
 sys.path.insert(0, str(BASE_DIR / 'member2'))
 sys.path.insert(0, str(BASE_DIR / 'Member3'))
 sys.path.insert(0, str(BASE_DIR / 'Member4'))
+
+try:
+    from flask import Flask, request, jsonify, send_from_directory
+    from flask_cors import CORS
+except ImportError:
+    print("\n❌ Error: 'flask' or 'flask-cors' is not installed in your active Python interpreter.")
+    print("👉 Run: python -m pip install flask flask-cors")
+    print("   or:  pip install -r requirements.txt\n")
+    sys.exit(1)
+
+import pandas as pd
+import numpy as np
 
 from pipeline import ExperimentIQPipeline
 
